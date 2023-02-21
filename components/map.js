@@ -7,14 +7,18 @@ import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
 import "leaflet-defaulticon-compatibility";
 
+
 export default function Map(){
     // 0 == Small, 1 == Big
     const bounds = [
         [40.712, -74.227],
         [40.774, -74.125]
     ];
+
+
     const [mapState, setMapState] = useState(0)
     const [markerLocation, setMarkerLocation] = useState({"x" : 0, "y" : 0})
+    
 
     function handleSizeChange(){
         setMapState((prevMapState) =>{
@@ -30,8 +34,8 @@ export default function Map(){
             : "map--large"
             ]}`}>
                 
-                <div className={styles.map__toggleIcon}
-                 onClick={() => handleSizeChange()}>
+            <div className={styles.map__toggleIcon}
+                onClick={() => handleSizeChange()}>
 
             <FontAwesomeIcon  
                 icon={faUpRightAndDownLeftFromCenter}
@@ -40,27 +44,26 @@ export default function Map(){
                 
             </div>
 
-<MapContainer center={[40.712, -74.227]} zoom={14} scrollWheelZoom={false} style={{height: "100%", width: "100%"}}>
-<ImageOverlay bounds={bounds} url="/mapimage.jpg"></ImageOverlay>
-      <Marker 
-      position={[40.712, -74.227]}
-      draggable={true}
-      animate={true}
-      >
-          
-        <Popup>
-          Hey ! you found me
-        </Popup>
-      </Marker>
-    </MapContainer>
-
-
+            <MapContainer minZoom={11}
+                        maxZoom={17}
+                        center={[40.712, -74.227]} zoom={14} 
+                        scrollWheelZoom={true} 
+                        style={{height: "100%", width: "100%"}}
+                        maxBounds={bounds}
+                        maxBoundsViscosity={0}
+            >
+                <ImageOverlay bounds={bounds} url="/mapimage.jpg"></ImageOverlay>
+                    <Marker 
+                    position={[40.774, -74.125]}
+                    draggable={true}
+                    animate={true}
+                >
+                    <Popup>Hey ! you found me</Popup>
+                
+                </Marker>
+            </MapContainer>
             
-            {/* <img
-                    className={styles["map__image"]} 
-                    src="/mapimage.jpg"
-                    onClick={() => handleLocationMarker()}
-            /> */}
+            <button onClick={() => setBackground("/stairs.jpg")}>CLICK</button>
  
     </section>
     

@@ -13,6 +13,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@next/font": "13.1.6",
+    "@photo-sphere-viewer/core": "^5.1.1",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.6",
     "leaflet": "^1.9.3",
@@ -21,6 +22,7 @@
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-leaflet": "^4.2.0"
+    "react-leaflet": "^4.2.0",
+    "react-photo-sphere-viewer": "^3.3.3-psv5.1.1"
   }
 }

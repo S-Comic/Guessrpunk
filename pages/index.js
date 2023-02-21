@@ -3,6 +3,10 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import dynamic from "next/dynamic";
+import Photosphere from '../components/photosphere';
+import { useState, createRef, useEffect, useCallback } from 'react';
+
+
 const MapWithNoSSR = dynamic(() => import("../components/map"), {
   ssr: false
 });
@@ -10,6 +14,14 @@ const MapWithNoSSR = dynamic(() => import("../components/map"), {
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [panoramaImage, setPanoramaImage] = useState("/beach.jpg")
+  const [background, setBackground] = useState("/beach.jpg")
+  const wrapperSetParentState = useCallback(val => {
+    setPanoramaImage(val);
+  }, [setPanoramaImage]);
+
+
+
   return (
     <>
       <Head>
@@ -19,9 +31,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-
-
-        <MapWithNoSSR />
+        
+        <MapWithNoSSR panoramaImage={panoramaImage} />
+        <Photosphere  setPanoramaImage={wrapperSetParentState} panoramaImage={panoramaImage} />
       </main>
 
     </>
