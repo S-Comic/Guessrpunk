@@ -8,11 +8,11 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import "leaflet-defaulticon-compatibility";
 
 
-export default function Map(){
+export default function Map(props){
     // 0 == Small, 1 == Big
     const bounds = [
-        [40.712, -74.227],
-        [40.774, -74.125]
+        [0, 0],
+        [0.2891, 0.2232]
     ];
 
 
@@ -46,15 +46,14 @@ export default function Map(){
 
             <MapContainer minZoom={11}
                         maxZoom={17}
-                        center={[40.712, -74.227]} zoom={14} 
+                        center={[0, 0]} zoom={14} 
                         scrollWheelZoom={true} 
                         style={{height: "100%", width: "100%"}}
-                        maxBounds={bounds}
-                        maxBoundsViscosity={0}
+
             >
-                <ImageOverlay bounds={bounds} url="/mapimage.jpg"></ImageOverlay>
+                <ImageOverlay bounds={bounds} url="/satellite.webp"></ImageOverlay>
                     <Marker 
-                    position={[40.774, -74.125]}
+                    position={[0, 0]}
                     draggable={true}
                     animate={true}
                 >
@@ -63,7 +62,7 @@ export default function Map(){
                 </Marker>
             </MapContainer>
             
-            <button onClick={() => setBackground("/stairs.jpg")}>CLICK</button>
+            <button className={styles["map__next-image-button"]} onClick={() => props.setPanoramaImage("/sku.jpg")}>CLICK</button>
  
     </section>
     

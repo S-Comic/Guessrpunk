@@ -16,7 +16,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const [panoramaImage, setPanoramaImage] = useState("/beach.jpg")
   const [background, setBackground] = useState("/beach.jpg")
-  const wrapperSetParentState = useCallback(val => {
+  const wrapperSetPanoramaImage = useCallback(val => {
     setPanoramaImage(val);
   }, [setPanoramaImage]);
 
@@ -32,8 +32,8 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         
-        <MapWithNoSSR panoramaImage={panoramaImage} />
-        <Photosphere  setPanoramaImage={wrapperSetParentState} panoramaImage={panoramaImage} />
+        <MapWithNoSSR setPanoramaImage={wrapperSetPanoramaImage} panoramaImage={panoramaImage} />
+        <Photosphere panoramaImage={panoramaImage} />
       </main>
 
     </>

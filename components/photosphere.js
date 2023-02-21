@@ -35,12 +35,11 @@ export default function Photosphere(props){
 
     
     return(
-        <Fragment>
-            <button onClick={() => props.setPanoramaImage("/stairs.jpg")}>CLICK</button>
+
+            
       <ReactPhotoSphereViewer ref={photoSphereRef} onReady={(e) => handleReady(e)} id="fuck"  navbar={false} src={props.panoramaImage} height={'100vh'} width={"100%"}>
         
       </ReactPhotoSphereViewer>
-  
-      </Fragment>
+
       )
 }
