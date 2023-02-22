@@ -41,9 +41,14 @@ export default function MapContent(props){
 
     useEffect(() => {
         if (props.answerLocation != null){
-            answer = new L.Marker(props.answerLocation);
+            var myIcon = L.icon({
+                iconUrl: '/marker.webp',
+                iconAnchor: [10, 28]
+            });
+
+            answer = new L.Marker(props.answerLocation, {icon: myIcon});
             map.addLayer(answer);
-            map.setView(props.answerLocation);
+            map.setView(props.answerLocation, map.getZoom(), {animate: true});
         }
     }, [props.answerLocation])
 

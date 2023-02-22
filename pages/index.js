@@ -20,6 +20,7 @@ export default function Home() {
   const [panoramaImage, setPanoramaImage] = useState(imageObject[Math.floor(Math.random() * imageObject.length)])
   const [markerLocation, setMarkerLocation] = useState(null)
   const [answerLocation, setAnswerLocation] = useState(null)
+  const [totalScore, setTotalScore] = useState(0)
   const wrapperSetPanoramaImage = useCallback(val => {
     setPanoramaImage(val);
   }, [setPanoramaImage]);
@@ -29,6 +30,9 @@ export default function Home() {
   const wrapperSetAnswerLocation = useCallback(val => {
     setAnswerLocation(val);
   }, [setAnswerLocation]);
+  const wrapperSetTotalScore = useCallback(val => {
+    setTotalScore(val);
+  }, [setTotalScore]);
 
 
   return (
@@ -40,6 +44,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+
+        <div className={styles.scoreBox}>
+          <p>TOTAL SCORE: {totalScore}</p>
+        </div>
         
         <MapWithNoSSR 
           imageObject={imageObject} 
@@ -48,7 +56,9 @@ export default function Home() {
           setMarkerLocation={wrapperSetMarkerLocation}
           markerLocation={markerLocation}
           answerLocation={answerLocation}
-          setAnswerLocation={wrapperSetAnswerLocation}  />
+          setAnswerLocation={wrapperSetAnswerLocation}
+          totalScore={totalScore}
+          setTotalScore={wrapperSetTotalScore}  />
         <Photosphere 
           imageObject={imageObject} 
           panoramaImage={panoramaImage}

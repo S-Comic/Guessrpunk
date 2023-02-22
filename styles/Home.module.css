@@ -75,3 +75,18 @@
   cursor: pointer;
   color: white;
 }
+
+.scoreBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  background-color: var(--primary-color);
+  box-shadow: var(--primary-glow);
+  color: white;
+  height: 40px;
+  width: 30vh;
+  z-index: 5000;
+}

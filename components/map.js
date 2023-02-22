@@ -11,6 +11,7 @@ import MapContent from './mapcontent'
 
 
 export default function Map(props){
+    var score
     const wrapperSetMarkerLocation = useCallback(val => {
         props.setMarkerLocation(val);
       }, [props.setMarkerLocation]);
@@ -23,6 +24,7 @@ export default function Map(props){
     ];
 
     const [mapState, setMapState] = useState(0)
+    const [mapScore, setMapScore] = useState(0)
 
     function handleSizeChange(){
         setMapState((prevMapState) =>{
@@ -31,13 +33,27 @@ export default function Map(props){
     }
 
     function handleClick(){
-        if (props.answerLocation != null){
-            props.setAnswerLocation(null)
-            props.setMarkerLocation(null)
-            props.setPanoramaImage(props.imageObject[Math.floor(Math.random() * props.imageObject.length)])
-        } else {
-            props.setAnswerLocation(props.panoramaImage.location)
+        if (props.markerLocation != null){
+            if (props.answerLocation != null){
+
+                props.setAnswerLocation(null)
+                props.setMarkerLocation(null)
+                props.setPanoramaImage(props.imageObject[Math.floor(Math.random() * props.imageObject.length)])
+            } else {
+                props.setAnswerLocation(props.panoramaImage.location)
+                const squareLat = Math.pow((props.panoramaImage.location[0] - props.markerLocation.lat), 2)
+                const squareLng = Math.pow((props.panoramaImage.location[1] - props.markerLocation.lng), 2)
+                let totalScoreTemp = Math.round((10 - Math.pow(((squareLat + squareLng)*800), 1.5)) * 10, 1)
+                if (totalScoreTemp < 0){
+                    totalScoreTemp = 0
+                }
+                setMapScore(totalScoreTemp)
+                props.setTotalScore((prevScore) =>{
+                    return prevScore + totalScoreTemp
+                })
+            }
         }
+
         
         
     }
@@ -53,7 +69,8 @@ export default function Map(props){
 
 
             <MapContainer minZoom={11}
-                        
+                        zoomAnimation={true}
+                        zoomAnimationThreshold={20}
                         maxZoom={17}
                         center={[0.12, 0.1]} zoom={11} 
                         scrollWheelZoom={true} 
@@ -68,7 +85,12 @@ export default function Map(props){
             </MapContainer>
             
             <button className={styles["map__next-image-button"]} onClick={() => handleClick()}>
-                {props.answerLocation == null ? "MAKE GUESS" : "NEXT LOCATION"}
+                {
+                props.answerLocation == null 
+                ? props.markerLocation != null ? "CONFIRM GUESS" : "MAKE A GUESS"
+                : `NEXT LOCATION - SCORE: ${mapScore}`
+                }
+
                 </button>
  
     </section>
