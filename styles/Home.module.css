@@ -78,6 +78,7 @@
 
 .scoreBox{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -86,7 +87,7 @@
   background-color: var(--primary-color);
   box-shadow: var(--primary-glow);
   color: white;
-  height: 40px;
+  height: 80px;
   width: 30vh;
   z-index: 5000;
 }

@@ -21,8 +21,18 @@ export default function Home() {
   const [markerLocation, setMarkerLocation] = useState(null)
   const [answerLocation, setAnswerLocation] = useState(null)
   const [totalScore, setTotalScore] = useState(0)
+  const [roundNum, setRoundNum] = useState(1)
   const wrapperSetPanoramaImage = useCallback(val => {
     setPanoramaImage(val);
+    
+
+      setRoundNum((prevNum) => {
+        if (prevNum == 5){
+          return 1
+        }
+        return prevNum + 1
+      })
+    
   }, [setPanoramaImage]);
   const wrapperSetMarkerLocation = useCallback(val => {
     setMarkerLocation(val);
@@ -33,6 +43,11 @@ export default function Home() {
   const wrapperSetTotalScore = useCallback(val => {
     setTotalScore(val);
   }, [setTotalScore]);
+
+  useEffect(() => {
+
+
+  }, [panoramaImage])
 
 
   return (
@@ -46,6 +61,7 @@ export default function Home() {
       <main className={`${styles.main} ${teko.className}`}>
 
         <div className={styles.scoreBox}>
+          <p>ROUND: {roundNum}/5</p>
           <p>TOTAL SCORE: {totalScore}</p>
         </div>
         
