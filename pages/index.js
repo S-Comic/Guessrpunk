@@ -5,6 +5,7 @@ import styles from '@/styles/Home.module.css'
 import dynamic from "next/dynamic";
 import Photosphere from '../components/photosphere';
 import { useState, createRef, useEffect, useCallback } from 'react';
+import imageObject from '../components/imageObject'
 
 
 const MapWithNoSSR = dynamic(() => import("../components/map"), {
@@ -14,12 +15,16 @@ const MapWithNoSSR = dynamic(() => import("../components/map"), {
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const [panoramaImage, setPanoramaImage] = useState("/beach.jpg")
-  const [background, setBackground] = useState("/beach.jpg")
+
+  // Create image state and allow it to be used by children
+  const [panoramaImage, setPanoramaImage] = useState(imageObject[Math.floor(Math.random() * imageObject.length)])
+  const [markerLocation, setMarkerLocation] = useState(null)
   const wrapperSetPanoramaImage = useCallback(val => {
     setPanoramaImage(val);
   }, [setPanoramaImage]);
-
+  const wrapperSetMarkerLocation = useCallback(val => {
+    setMarkerLocation(val);
+  }, [setMarkerLocation]);
 
 
   return (
@@ -32,8 +37,15 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         
-        <MapWithNoSSR setPanoramaImage={wrapperSetPanoramaImage} panoramaImage={panoramaImage} />
-        <Photosphere panoramaImage={panoramaImage} />
+        <MapWithNoSSR 
+          imageObject={imageObject} 
+          setPanoramaImage={wrapperSetPanoramaImage} 
+          panoramaImage={panoramaImage}
+          setMarkerLocation={wrapperSetMarkerLocation}
+          markerLocation={markerLocation}  />
+        <Photosphere 
+          imageObject={imageObject} 
+          panoramaImage={panoramaImage}/>
       </main>
 
     </>
