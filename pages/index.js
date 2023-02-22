@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from '@next/font/google'
+import { Teko } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import dynamic from "next/dynamic";
 import Photosphere from '../components/photosphere';
@@ -12,10 +12,10 @@ const MapWithNoSSR = dynamic(() => import("../components/map"), {
   ssr: false
 });
 
-const inter = Inter({ subsets: ['latin'] })
+const teko = Teko({ subsets: ['latin'], weight: ['400', '700'], })
 
 export default function Home() {
-
+  
   // Create image state and allow it to be used by children
   const [panoramaImage, setPanoramaImage] = useState(imageObject[Math.floor(Math.random() * imageObject.length)])
   const [markerLocation, setMarkerLocation] = useState(null)
@@ -43,7 +43,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <main className={`${styles.main} ${teko.className}`}>
 
         <div className={styles.scoreBox}>
           <p>TOTAL SCORE: {totalScore}</p>

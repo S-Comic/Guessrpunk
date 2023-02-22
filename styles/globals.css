@@ -38,6 +38,10 @@ a {
   }
 }
 
+p{
+  font-size: 23px;
+}
+
 /* Leaflet styling */
 
 .leaflet-container.leaflet-touch{

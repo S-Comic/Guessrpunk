@@ -7,10 +7,14 @@ import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
 import "leaflet-defaulticon-compatibility";
 import MapContent from './mapcontent'
+import { Teko } from '@next/font/google'
 
 
-
+const teko = Teko({ subsets: ['latin'], weight: ['400', '700'], })
 export default function Map(props){
+
+    
+
     var score
     const wrapperSetMarkerLocation = useCallback(val => {
         props.setMarkerLocation(val);
@@ -84,12 +88,12 @@ export default function Map(props){
                     bounds={bounds}/>
             </MapContainer>
             
-            <button className={styles["map__next-image-button"]} onClick={() => handleClick()}>
-                {
+            <button className={`${styles["map__next-image-button"]} ${teko.className}`} onClick={() => handleClick()}>
+                <p>{
                 props.answerLocation == null 
                 ? props.markerLocation != null ? "CONFIRM GUESS" : "MAKE A GUESS"
                 : `NEXT LOCATION - SCORE: ${mapScore}`
-                }
+                }</p>
 
                 </button>
  

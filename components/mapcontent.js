@@ -15,6 +15,14 @@ export default function MapContent(props){
 
     var marker = [];
     var answer = [];
+    var answerIcon = L.icon({
+        iconUrl: '/answermarker.webp',
+        iconAnchor: [10, 28]
+    });
+    var guessIcon = L.icon({
+        iconUrl: '/marker.webp',
+        iconAnchor: [10, 28]
+    });
     const map = useMapEvents({
         click: (e) => {
             if (props.answerLocation == null){
@@ -33,7 +41,7 @@ export default function MapContent(props){
             
           });
         if (props.markerLocation != null){
-            marker = new L.Marker(props.markerLocation);
+            marker = new L.Marker(props.markerLocation, {icon: guessIcon});
             map.addLayer(marker);
         }
         
@@ -41,12 +49,8 @@ export default function MapContent(props){
 
     useEffect(() => {
         if (props.answerLocation != null){
-            var myIcon = L.icon({
-                iconUrl: '/marker.webp',
-                iconAnchor: [10, 28]
-            });
 
-            answer = new L.Marker(props.answerLocation, {icon: myIcon});
+            answer = new L.Marker(props.answerLocation, {icon: answerIcon});
             map.addLayer(answer);
             map.setView(props.answerLocation, map.getZoom(), {animate: true});
         }
