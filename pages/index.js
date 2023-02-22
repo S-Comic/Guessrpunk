@@ -28,10 +28,14 @@ export default function Home() {
 
       setRoundNum((prevNum) => {
         if (prevNum == 5){
+          setTotalScore(0)
           return 1
         }
         return prevNum + 1
       })
+
+  
+      
     
   }, [setPanoramaImage]);
   const wrapperSetMarkerLocation = useCallback(val => {
@@ -53,7 +57,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>CyberGuessr</title>
+        <title>GuessrPunk</title>
         <meta name="description" content="Where in the world is V?" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/markericon.webp" />

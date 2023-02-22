@@ -47,7 +47,7 @@ export default function Map(props){
                 props.setAnswerLocation(props.panoramaImage.location)
                 const squareLat = Math.pow((props.panoramaImage.location[0] - props.markerLocation.lat), 2)
                 const squareLng = Math.pow((props.panoramaImage.location[1] - props.markerLocation.lng), 2)
-                let totalScoreTemp = Math.round((10 - Math.pow(((squareLat + squareLng)*800), 1.5)) * 10, 1)
+                let totalScoreTemp = Math.round((10 - Math.pow(((squareLat + squareLng)*9000), 1.0001)) * 10, 1)
                 if (totalScoreTemp < 0){
                     totalScoreTemp = 0
                 }
