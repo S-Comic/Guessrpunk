@@ -16,6 +16,10 @@ const ReactPhotoSphereViewer = dynamic(
 
 export default function Photosphere(props){
     const photoSphereRef = useRef(null)
+
+    const panoData = {
+
+    }
     
     
     
@@ -35,7 +39,7 @@ export default function Photosphere(props){
     return(
 
             
-      <ReactPhotoSphereViewer ref={photoSphereRef} onReady={(e) => handleReady(e)} navbar={false} src={props.panoramaImage.url} height={'100vh'} width={"100%"}>
+      <ReactPhotoSphereViewer ref={photoSphereRef} onReady={(e) => handleReady(e)} navbar={false} panoData={panoData} src={props.panoramaImage.url} height={'100vh'} width={"100%"}>
         
       </ReactPhotoSphereViewer>
 
