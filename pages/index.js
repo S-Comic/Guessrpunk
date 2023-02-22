@@ -5,7 +5,7 @@ import styles from '@/styles/Home.module.css'
 import dynamic from "next/dynamic";
 import Photosphere from '../components/photosphere';
 import { useState, createRef, useEffect, useCallback } from 'react';
-import imageObject from '../components/imageObject'
+import imageArray from '../components/imageArray'
 
 
 const MapWithNoSSR = dynamic(() => import("../components/map"), {
@@ -17,7 +17,7 @@ const teko = Teko({ subsets: ['latin'], weight: ['400', '700'], })
 export default function Home() {
   
   // Create image state and allow it to be used by children
-  const [panoramaImage, setPanoramaImage] = useState(imageObject[Math.floor(Math.random() * imageObject.length)])
+  const [panoramaImage, setPanoramaImage] = useState(imageArray[Math.floor(Math.random() * imageArray.length)])
   const [markerLocation, setMarkerLocation] = useState(null)
   const [answerLocation, setAnswerLocation] = useState(null)
   const [totalScore, setTotalScore] = useState(0)
@@ -50,7 +50,7 @@ export default function Home() {
         </div>
         
         <MapWithNoSSR 
-          imageObject={imageObject} 
+          imageObject={imageArray} 
           setPanoramaImage={wrapperSetPanoramaImage} 
           panoramaImage={panoramaImage}
           setMarkerLocation={wrapperSetMarkerLocation}
@@ -60,7 +60,7 @@ export default function Home() {
           totalScore={totalScore}
           setTotalScore={wrapperSetTotalScore}  />
         <Photosphere 
-          imageObject={imageObject} 
+          imageObject={imageArray} 
           panoramaImage={panoramaImage}
           answerLocation={answerLocation}/>
       </main>
