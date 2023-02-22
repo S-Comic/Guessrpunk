@@ -9,6 +9,7 @@ import "leaflet-defaulticon-compatibility";
 import MapContent from './mapcontent'
 
 
+
 export default function Map(props){
     const wrapperSetMarkerLocation = useCallback(val => {
         props.setMarkerLocation(val);
@@ -22,8 +23,6 @@ export default function Map(props){
     ];
 
     const [mapState, setMapState] = useState(0)
-    const [markerLocation, setMarkerLocation] = useState({"x" : 0, "y" : 0})
-    
 
     function handleSizeChange(){
         setMapState((prevMapState) =>{
@@ -32,7 +31,14 @@ export default function Map(props){
     }
 
     function handleClick(){
-        props.setPanoramaImage(props.imageObject[Math.floor(Math.random() * props.imageObject.length)])
+        if (props.answerLocation != null){
+            props.setAnswerLocation(null)
+            props.setMarkerLocation(null)
+            props.setPanoramaImage(props.imageObject[Math.floor(Math.random() * props.imageObject.length)])
+        } else {
+            props.setAnswerLocation(props.panoramaImage.location)
+        }
+        
         
     }
 
@@ -44,15 +50,7 @@ export default function Map(props){
             : "map--large"
             ]} ${styles.unselectable}`}>
                 
-            <div className={styles.map__toggleIcon}
-                onClick={() => handleSizeChange()}>
 
-            <FontAwesomeIcon  
-                icon={faUpRightAndDownLeftFromCenter}
-            />
-                
-                
-            </div>
 
             <MapContainer minZoom={11}
                         
@@ -65,10 +63,13 @@ export default function Map(props){
                 <MapContent 
                     setMarkerLocation={wrapperSetMarkerLocation}
                     markerLocation={props.markerLocation} 
+                    answerLocation={props.answerLocation}
                     bounds={bounds}/>
             </MapContainer>
             
-            <button className={styles["map__next-image-button"]} onClick={() => handleClick()}>CLICK</button>
+            <button className={styles["map__next-image-button"]} onClick={() => handleClick()}>
+                {props.answerLocation == null ? "MAKE GUESS" : "NEXT LOCATION"}
+                </button>
  
     </section>
     

@@ -19,12 +19,16 @@ export default function Home() {
   // Create image state and allow it to be used by children
   const [panoramaImage, setPanoramaImage] = useState(imageObject[Math.floor(Math.random() * imageObject.length)])
   const [markerLocation, setMarkerLocation] = useState(null)
+  const [answerLocation, setAnswerLocation] = useState(null)
   const wrapperSetPanoramaImage = useCallback(val => {
     setPanoramaImage(val);
   }, [setPanoramaImage]);
   const wrapperSetMarkerLocation = useCallback(val => {
     setMarkerLocation(val);
   }, [setMarkerLocation]);
+  const wrapperSetAnswerLocation = useCallback(val => {
+    setAnswerLocation(val);
+  }, [setAnswerLocation]);
 
 
   return (
@@ -42,10 +46,13 @@ export default function Home() {
           setPanoramaImage={wrapperSetPanoramaImage} 
           panoramaImage={panoramaImage}
           setMarkerLocation={wrapperSetMarkerLocation}
-          markerLocation={markerLocation}  />
+          markerLocation={markerLocation}
+          answerLocation={answerLocation}
+          setAnswerLocation={wrapperSetAnswerLocation}  />
         <Photosphere 
           imageObject={imageObject} 
-          panoramaImage={panoramaImage}/>
+          panoramaImage={panoramaImage}
+          answerLocation={answerLocation}/>
       </main>
 
     </>

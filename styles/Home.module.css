@@ -2,11 +2,11 @@
 /* MAP */
 .map{
   position: absolute;
-  bottom: 20px;
-  right: 0;
+  right: 20px;
   aspect-ratio: 1 / 1;
   transition: 0.5s all;
   z-index: 5000;
+  bottom: 60px;
 }
 
 .unselectable {
@@ -65,7 +65,13 @@
 
 .map__next-image-button{
   position: absolute;
-  bottom: -20px;
   width: 100%;
   z-index: 5001;
+  height: 40px;
+  bottom: -40px;
+  border: none;
+  background-color: var(--primary-color);
+  box-shadow: var(--primary-glow);
+  cursor: pointer;
+  color: white;
 }

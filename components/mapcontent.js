@@ -7,16 +7,20 @@ import "leaflet-defaulticon-compatibility";
 
 
 
-
+import styles from '@/styles/Home.module.css'
 
 export default function MapContent(props){
 
 
 
     var marker = [];
+    var answer = [];
     const map = useMapEvents({
         click: (e) => {
-            props.setMarkerLocation(e.latlng)
+            if (props.answerLocation == null){
+                props.setMarkerLocation(e.latlng)
+            }
+            
  
         },
 
@@ -29,11 +33,19 @@ export default function MapContent(props){
             
           });
         if (props.markerLocation != null){
-            marker = new L.Marker(props.markerLocation, {draggable:true});
+            marker = new L.Marker(props.markerLocation);
             map.addLayer(marker);
         }
         
     }, [props.markerLocation])
+
+    useEffect(() => {
+        if (props.answerLocation != null){
+            answer = new L.Marker(props.answerLocation);
+            map.addLayer(answer);
+            map.setView(props.answerLocation);
+        }
+    }, [props.answerLocation])
 
     return(
         <Fragment>
