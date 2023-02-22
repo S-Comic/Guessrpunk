@@ -90,3 +90,14 @@
   width: 30vh;
   z-index: 5000;
 }
+
+@media only screen and (max-width: 600px) {
+  .scoreBox{
+    bottom: unset;
+    top: 20px;
+  }
+
+  .map--small:hover{
+    height: 30%;
+  }
+}
