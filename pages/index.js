@@ -15,7 +15,6 @@ const MapWithNoSSR = dynamic(() => import("../components/map"), {
 const teko = Teko({ subsets: ['latin'], weight: ['400', '700'], })
 function createImageArray(){
   var shuffled = imageArray.sort(function(){return .5 - Math.random()})
-  console.log(shuffled.slice(0,5))
   return shuffled.slice(0,5);
 }
 

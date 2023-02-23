@@ -26,7 +26,6 @@ export default function Photosphere(props){
     }
     useEffect(() => {
         if (photoSphereRef.current){
-          console.log(photoSphereRef)
             photoSphereRef.current.setPanorama(props.panoramaImage[props.panoramaImageID].url)
         }
     }, [props.panoramaImageID])
