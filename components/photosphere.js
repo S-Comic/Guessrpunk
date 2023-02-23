@@ -27,15 +27,15 @@ export default function Photosphere(props){
     useEffect(() => {
         if (photoSphereRef.current){
           console.log(photoSphereRef)
-            photoSphereRef.current.setPanorama(props.panoramaImage.url)
+            photoSphereRef.current.setPanorama(props.panoramaImage[props.panoramaImageID].url)
         }
-    }, [props.panoramaImage])
+    }, [props.panoramaImageID])
 
     
     return(
 
             
-      <ReactPhotoSphereViewer ref={photoSphereRef} onReady={(e) => handleReady(e)} navbar={false} defaultZoomLvl={0} maxFov={90}  src={props.panoramaImage.url} height={'100vh'} width={"100%"}>
+      <ReactPhotoSphereViewer ref={photoSphereRef} onReady={(e) => handleReady(e)} navbar={false} defaultZoomLvl={0} maxFov={90}  src={props.panoramaImage[props.panoramaImageID].url} height={'100vh'} width={"100%"}>
         
       </ReactPhotoSphereViewer>
 

@@ -13,25 +13,45 @@ const MapWithNoSSR = dynamic(() => import("../components/map"), {
 });
 
 const teko = Teko({ subsets: ['latin'], weight: ['400', '700'], })
+function createImageArray(){
+  var shuffled = imageArray.sort(function(){return .5 - Math.random()})
+  console.log(shuffled.slice(0,5))
+  return shuffled.slice(0,5);
+}
 
 export default function Home() {
+
   
   // Create image state and allow it to be used by children
-  const [panoramaImage, setPanoramaImage] = useState(imageArray[Math.floor(Math.random() * imageArray.length)])
+  const [panoramaImageID, setPanoramaImageID] = useState(0)
+  const [panoramaImage, setPanoramaImage] = useState(() => createImageArray())
   const [markerLocation, setMarkerLocation] = useState(null)
   const [answerLocation, setAnswerLocation] = useState(null)
   const [totalScore, setTotalScore] = useState(0)
   const [roundNum, setRoundNum] = useState(1)
-  const wrapperSetPanoramaImage = useCallback(val => {
-    setPanoramaImage(val);
+  const wrapperSetPanoramaImage = useCallback(() => {
     
 
       setRoundNum((prevNum) => {
         if (prevNum == 5){
           setTotalScore(0)
           return 1
+        } else{
+          return prevNum + 1
         }
-        return prevNum + 1
+        
+      })
+
+      setPanoramaImageID((prevID) => {
+        if (prevID == 4){
+          setPanoramaImage(() => createImageArray())
+          return 0
+        } else{
+          return prevID + 1
+        }
+        
+        
+
       })
 
   
@@ -78,11 +98,13 @@ export default function Home() {
           answerLocation={answerLocation}
           setAnswerLocation={wrapperSetAnswerLocation}
           totalScore={totalScore}
-          setTotalScore={wrapperSetTotalScore}  />
+          setTotalScore={wrapperSetTotalScore}
+          panoramaImageID={panoramaImageID}  />
         <Photosphere 
           imageObject={imageArray} 
           panoramaImage={panoramaImage}
-          answerLocation={answerLocation}/>
+          answerLocation={answerLocation}
+          panoramaImageID={panoramaImageID}/>
       </main>
 
     </>
