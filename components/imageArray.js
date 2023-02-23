@@ -20,7 +20,7 @@ const imageArray = [
     {
         "id" : 3,
         "url" : "/stitch4.jpg",
-        "location" : [(0.2891 - 0.1336), 0.0904],
+        "location" : [(0.2891 - 0.1474), 0.1019],
         "difficulty" : "easy"
     },
 
@@ -28,6 +28,24 @@ const imageArray = [
         "id" : 4,
         "url" : "/stitch5.jpg",
         "location" : [(0.2891 - 0.0889), 0.0902],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 5,
+        "url" : "/stitch7.jpg",
+        "location" : [(0.2891 - 0.1238), 0.1238],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 6,
+        "url" : "/stitch8.jpg",
+        "location" : [(0.2891 - 0.1266), 0.1177],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 7,
+        "url" : "/stitch9.jpg",
+        "location" : [(0.2891 - 0.2383), 0.0526],
         "difficulty" : "easy"
     },
     

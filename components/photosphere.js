@@ -16,11 +16,6 @@ const ReactPhotoSphereViewer = dynamic(
 
 export default function Photosphere(props){
     const photoSphereRef = useRef(null)
-
-    const panoData = {
-
-    }
-    
     
     
     function handleReady(e){
@@ -31,6 +26,7 @@ export default function Photosphere(props){
     }
     useEffect(() => {
         if (photoSphereRef.current){
+          console.log(photoSphereRef)
             photoSphereRef.current.setPanorama(props.panoramaImage.url)
         }
     }, [props.panoramaImage])
@@ -39,7 +35,7 @@ export default function Photosphere(props){
     return(
 
             
-      <ReactPhotoSphereViewer ref={photoSphereRef} onReady={(e) => handleReady(e)} navbar={false} panoData={panoData} src={props.panoramaImage.url} height={'100vh'} width={"100%"}>
+      <ReactPhotoSphereViewer ref={photoSphereRef} onReady={(e) => handleReady(e)} navbar={false} defaultZoomLvl={0} maxFov={90}  src={props.panoramaImage.url} height={'100vh'} width={"100%"}>
         
       </ReactPhotoSphereViewer>
 
