@@ -84,6 +84,30 @@ const imageArray = [
         "location" : [(0.2891 - 0.2001), 0.0450],
         "difficulty" : "easy"
     },
+    {
+        "id" : 14,
+        "url" : "/14.jpg",
+        "location" : [(0.2891 - 0.1093), 0.1473],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 15,
+        "url" : "/15.jpg",
+        "location" : [(0.2891 - 0.2180), 0.1865],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 16,
+        "url" : "/16.jpg",
+        "location" : [(0.2891 - 0.0873), 0.0451],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 17,
+        "url" : "/17.jpg",
+        "location" : [(0.2891 - 0.1558), 0.0784],
+        "difficulty" : "easy"
+    },
     
     
     
