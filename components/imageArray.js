@@ -5,12 +5,12 @@ const imageArray = [
         "location" : [0.1191, 0.0623],
         "difficulty" : "easy"
     },
-    {
-        "id" : 1,
-        "url" : "/1.jpg",
-        "location" : [(0.2891 - 0.1781), 0.0892],
-        "difficulty" : "easy"
-    },
+    // {
+    //     "id" : 1,
+    //     "url" : "/1.jpg",
+    //     "location" : [(0.2891 - 0.1781), 0.0892],
+    //     "difficulty" : "easy"
+    // },
     {
         "id" : 2,
         "url" : "/2.jpg",
