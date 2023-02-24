@@ -10,6 +10,7 @@ import MapContent from './mapcontent'
 import { Teko } from '@next/font/google'
 
 
+
 const teko = Teko({ subsets: ['latin'], weight: ['400', '700'], })
 export default function Map(props){
 
@@ -69,6 +70,14 @@ export default function Map(props){
             ? "map--small" 
             : "map--large"
             ]} ${styles.unselectable}`}>
+
+<div className={styles.map__toggleIcon}
+                 onClick={() => handleSizeChange()}>
+
+            Expand
+                
+                
+            </div>
                 
 
 
