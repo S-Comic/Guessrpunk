@@ -34,7 +34,7 @@ export default function Photosphere(props){
     return(
 
             
-      <ReactPhotoSphereViewer ref={photoSphereRef} onReady={(e) => handleReady(e)} navbar={false} defaultZoomLvl={0} maxFov={90}  src={props.panoramaImage[props.panoramaImageID].url} height={'100vh'} width={"100%"}>
+      <ReactPhotoSphereViewer ref={photoSphereRef} onReady={(e) => handleReady(e)} navbar={false} defaultZoomLvl={-10} maxFov={90}  src={props.panoramaImage[props.panoramaImageID].url} height={'100vh'} width={"100%"}>
         
       </ReactPhotoSphereViewer>
 
