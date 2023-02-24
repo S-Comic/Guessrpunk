@@ -87,7 +87,7 @@
   background-color: var(--primary-color);
   box-shadow: var(--primary-glow);
   color: white;
-  height: 80px;
+  height: auto;
   width: 30vh;
   z-index: 5000;
 }

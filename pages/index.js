@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import Photosphere from '../components/photosphere';
 import { useState, createRef, useEffect, useCallback } from 'react';
 import imageArray from '../components/imageArray'
+import { setCookie, hasCookie, getCookie } from 'cookies-next';
 
 
 const MapWithNoSSR = dynamic(() => import("../components/map"), {
@@ -27,12 +28,14 @@ export default function Home() {
   const [markerLocation, setMarkerLocation] = useState(null)
   const [answerLocation, setAnswerLocation] = useState(null)
   const [totalScore, setTotalScore] = useState(0)
+  const [highScore, setHighScore] = useState(0)
+  useEffect(() => setHighScore(hasCookie('highscore') ? getCookie('highscore') : 0), [])
   const [roundNum, setRoundNum] = useState(1)
   const wrapperSetPanoramaImage = useCallback(() => {
-    
 
       setRoundNum((prevNum) => {
         if (prevNum == 5){
+
           setTotalScore(0)
           return 1
         } else{
@@ -49,12 +52,7 @@ export default function Home() {
           return prevID + 1
         }
         
-        
-
       })
-
-  
-      
     
   }, [setPanoramaImage]);
   const wrapperSetMarkerLocation = useCallback(val => {
@@ -68,9 +66,17 @@ export default function Home() {
   }, [setTotalScore]);
 
   useEffect(() => {
+    setHighScore((prevHighScore) =>{
+      if (totalScore > prevHighScore){
+        setCookie("highscore", totalScore)
+        return totalScore
+      } else{
+        return prevHighScore
+      }
+      
+    })
 
-
-  }, [panoramaImage])
+  }, [totalScore])
 
 
   return (
@@ -85,7 +91,8 @@ export default function Home() {
 
         <div className={styles.scoreBox}>
           <p>ROUND: {roundNum}/5</p>
-          <p>TOTAL SCORE: {totalScore}</p>
+          <p>ROUND SCORE: {totalScore}</p>
+          <p>HIGH SCORE: {highScore}</p>
         </div>
         
         <MapWithNoSSR 
