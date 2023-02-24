@@ -86,6 +86,7 @@ export default function Home() {
         <meta name="description" content="Where in the world is V?" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/markericon.webp" />
+        <meta name='og:image' content='/16.jpg'></meta>
       </Head>
       <main className={`${styles.main} ${teko.className}`}>
 
