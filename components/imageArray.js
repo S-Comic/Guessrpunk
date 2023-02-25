@@ -1,8 +1,8 @@
 const imageLocation = "/panoramas"
 
 /* 
-Leaflet, the library used to create the bottom right map, measures from the top left of the image,
-whereas the software I used to find the coordinates of the location on the map measures from the bottom left,
+Leaflet, the library used to create the bottom right map, measures from the bottom left of the image,
+whereas the software I used to find the coordinates of the location on the map measures from the top left,
 hence the need to subtract mapHeight here.
 */
 
