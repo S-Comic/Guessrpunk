@@ -1,6 +1,5 @@
-
 /* MAP */
-.map{
+.map {
   position: absolute;
   right: 20px;
   aspect-ratio: 1 / 1;
@@ -17,35 +16,33 @@
   user-select: none;
 }
 
-
-.map--small{
+.map--small {
   height: 30%;
   width: auto;
 }
 
-.map--small:hover{
+.map--small:hover {
   height: 50%;
   width: auto;
 }
 
-
-.map--large{
+.map--large {
   width: auto;
   height: 50%;
 }
 
-.map__wrapper{
+.map__wrapper {
   width: 100%;
   height: 100%;
 }
 
-.map__image{
+.map__image {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
 
-.map__toggleIcon{
+.map__toggleIcon {
   display: none;
   position: absolute;
   justify-content: center;
@@ -62,7 +59,7 @@
   cursor: pointer;
 }
 
-.map__next-image-button{
+.map__next-image-button {
   position: absolute;
   width: 100%;
   z-index: 5001;
@@ -75,7 +72,7 @@
   color: white;
 }
 
-.scoreBox{
+.scoreBox {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -91,7 +88,7 @@
   z-index: 5000;
 }
 
-.infoToggle{
+.infoToggle {
   position: absolute;
   display: flex;
   align-items: center;
@@ -109,25 +106,28 @@
   padding: 10px;
   background-color: var(--primary-color);
   box-shadow: var(--primary-glow);
-
 }
 
-.info--container{
+.info--container {
   position: absolute;
   z-index: 5001;
   height: 100%;
   width: 100%;
-  background-color: #000000AA;
+  background-color: #000000aa;
 }
 
-.info--contentblock{
+.info--contentblock {
   position: absolute;
   padding-top: 80px;
   padding-left: 100px;
   color: white;
   height: 100%;
   width: 50%;
-  background:linear-gradient(0deg, var(--primary-color-transparent), var(--primary-color-transparent));
+  background: linear-gradient(
+    0deg,
+    var(--primary-color-transparent),
+    var(--primary-color-transparent)
+  );
   padding-right: 200px;
   display: flex;
   flex-direction: column;
@@ -135,28 +135,26 @@
   min-width: 750px;
 }
 
-.info--contentblock p{
+.info--contentblock p {
   font-size: 26px;
 }
 
-
 @media only screen and (max-width: 750px) {
-  .info--contentblock{
+  .info--contentblock {
     padding-top: 50px;
     min-width: 100%;
     width: 100%;
     padding-right: 20px;
     padding-left: 20px;
     overflow: scroll;
-    
   }
-  .info--contentblock p{
+  .info--contentblock p {
     font-size: 1.5rem;
   }
-  .info--contentblock h2{
+  .info--contentblock h2 {
     font-size: 50px;
   }
-  .infoToggle{
+  .infoToggle {
     left: unset;
     right: 10px;
     top: 10px;
@@ -164,55 +162,49 @@
 }
 
 @media only screen and (max-width: 600px) {
-
-  .scoreBox{
+  .scoreBox {
     bottom: unset;
     top: 10px;
     left: 10px;
   }
-  .map{
+  .map {
     right: 10px;
     bottom: 50px;
   }
 
+  .map--small {
+    height: 25%;
+    width: 40%;
+    transition: 0.6s all;
+  }
+  .map--small:hover {
+    width: 40%;
+    height: 25%;
+    transition: 0.6s all;
+  }
 
-  .map--small{
-    height: 25%;
-    width: 40%;
-    transition: 0.6s all;
-  
-  }
-  .map--small:hover{
-    width: 40%;
-    height: 25%;
-    transition: 0.6s all;
-  }
-  
-  .info--contentblock p{
+  .info--contentblock p {
     font-size: 1rem;
   }
-  .info--contentblock h2{
+  .info--contentblock h2 {
     font-size: 40px;
   }
-  
-  
-  .map--large{
+
+  .map--large {
     width: 100%;
     height: 50%;
     transition: 0.6s all;
     right: 0;
   }
-  .map__toggleIcon{
+  .map__toggleIcon {
     display: flex;
   }
-
 }
 
 @media only screen and (max-height: 890px) {
-  .info--contentblock{
+  .info--contentblock {
     width: 100%;
     padding-right: 20px;
     padding-left: 20px;
   }
-  
 }
