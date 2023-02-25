@@ -184,6 +184,43 @@ const imageArray = [
         "location" : [(mapHeight - 0.2265), 0.0590],
         "difficulty" : "easy"
     },
+    {
+        "id" : 29,
+        "url" : `${imageLocation}/29.jpg`,
+        "location" : [(mapHeight - 0.2147), 0.1358],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 30,
+        "url" : `${imageLocation}/30.jpg`,
+        "location" : [(mapHeight - 0.0747), 0.0872],
+        "difficulty" : "easy"
+    },
+    {
+        // Stitch on this one is a bit rough, might re-do
+        "id" : 31,
+        "url" : `${imageLocation}/31.jpg`,
+        "location" : [(mapHeight - 0.0913), 0.0838],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 32,
+        "url" : `${imageLocation}/32.jpg`,
+        "location" : [(mapHeight - 0.0594), 0.1416],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 33,
+        "url" : `${imageLocation}/33.jpg`,
+        "location" : [(mapHeight - 0.1131), 0.0763],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 34,
+        "url" : `${imageLocation}/34.jpg`,
+        "location" : [(mapHeight - 0.1140), 0.0584],
+        "difficulty" : "easy"
+    },
     
     
 ]
