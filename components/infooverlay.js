@@ -4,7 +4,7 @@ export default function InfoOverlay(){
     return (
         <div className={styles["info--container"]}>
             <div className={styles["info--contentblock"]}>
-                <h2>Where in the world&nbsp;is&nbsp;V?</h2>
+                <h2>Where in the world is V?</h2>
                 <p>Guessrpunk is an attempt to emulate 'Guessr' style gameplay within the world of 
                     Cyberpunk 2077. Try to achieve the highest score possible over the course of 5 rounds!</p>
                 <p>This is a quick project I've slapped together over a few days. 
