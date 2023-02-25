@@ -4,6 +4,7 @@ import { Teko } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import dynamic from "next/dynamic";
 import Photosphere from '../components/photosphere';
+import InfoOverlay from '@/components/infooverlay';
 import { useState, createRef, useEffect, useCallback } from 'react';
 import imageArray from '../components/imageArray'
 import { setCookie, hasCookie, getCookie } from 'cookies-next';
@@ -27,6 +28,7 @@ export default function Home() {
   const [panoramaImage, setPanoramaImage] = useState(() => createImageArray())
   const [markerLocation, setMarkerLocation] = useState(null)
   const [answerLocation, setAnswerLocation] = useState(null)
+  const [isInfoDisplay, setInfoDisplay] = useState(false)
   const [totalScore, setTotalScore] = useState(0)
   const [highScore, setHighScore] = useState(0)
   useEffect(() => setHighScore(hasCookie('highscore') ? getCookie('highscore') : 0), [])
@@ -90,12 +92,17 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${teko.className}`}>
 
+        {isInfoDisplay ? <InfoOverlay /> : ""}
+
         <div className={styles.scoreBox}>
           <p>ROUND: {roundNum}/5</p>
           <p>ROUND SCORE: {totalScore}</p>
           <p>HIGH SCORE: {highScore}</p>
         </div>
         
+        <div className={styles.infoToggle} onClick={() => setInfoDisplay(prev => !prev)}>
+          <p>{isInfoDisplay ? "X" : "?"}</p>
+        </div>
         <MapWithNoSSR 
           imageObject={imageArray} 
           setPanoramaImage={wrapperSetPanoramaImage} 
