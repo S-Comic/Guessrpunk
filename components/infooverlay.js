@@ -11,8 +11,8 @@ export default function InfoOverlay(){
                     Images are stitched together from screenshots taken in-game using Microsoft ICE and 
                     may have artifacts or distortion in some places depending on the quality of the stitch. 
                     Written in React / NextJS.`}</p>
-                <p>{`There's currently <strong>28</strong> different locations to find with more being added. A random selection 
-                of <strong>5</strong> locations are chosen per round. Sometimes locations will repeat between rounds.`}</p>
+                <p>{`There's currently 28 different locations to find with more being added. A random selection 
+                of 5 locations are chosen per round. Sometimes locations will repeat between rounds.`}</p>
                 <p>{`Have fun!`}</p>
                 <p>{`- COMIC`}</p>
             </div>
