@@ -227,6 +227,12 @@ const imageArray = [
         "location" : [(mapHeight - 0.1914), 0.0745],
         "difficulty" : "easy"
     },
+    {
+        "id" : 36,
+        "url" : `${imageLocation}/36.jpg`,
+        "location" : [(mapHeight - 0.1056), 0.0784],
+        "difficulty" : "easy"
+    },
     
     
 ]
