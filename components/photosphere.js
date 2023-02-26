@@ -34,7 +34,7 @@ export default function Photosphere(props) {
         props.panoramaImage[props.panoramaImageID].url
       );
     }
-  }, [props.panoramaImageID]);
+  }, [props.panoramaImageID, props.panoramaImage]);
 
   return (
     <ReactPhotoSphereViewer

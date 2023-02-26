@@ -88,24 +88,55 @@
   z-index: 5000;
 }
 
-.infoToggle {
+.asideBox{
   position: absolute;
   display: flex;
   align-items: center;
-  justify-content: center;
   z-index: 5002;
   text-align: center;
   margin: 0;
   color: white;
   border-radius: 5px;
+  background-color: var(--primary-color);
+  box-shadow: var(--primary-glow);
+}
+
+.infoToggle {
+  justify-content: center;
   cursor: pointer;
   left: 20px;
   top: 20px;
   height: 40px;
   width: 40px;
   padding: 10px;
-  background-color: var(--primary-color);
-  box-shadow: var(--primary-glow);
+}
+
+.seedBox{
+  left: 80px;
+  top: 20px;
+  height: 40px;
+  justify-content: space-between;
+  width: 150px;
+  padding-right: 10px;
+}
+
+.seedBox input{
+  width: 80%;
+  height: 100%;
+  background: white;
+  border: 3px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0 10px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.seedBox input::placeholder{
+  color: var(--primary-color);
+}
+
+.seedBox a{
+  cursor: pointer;
 }
 
 .info--container {
@@ -119,7 +150,7 @@
 .info--contentblock {
   position: absolute;
   padding-top: 80px;
-  padding-left: 100px;
+  padding-left: 80px;
   color: white;
   height: 100%;
   width: 50%;
@@ -141,11 +172,11 @@
 
 @media only screen and (max-width: 750px) {
   .info--contentblock {
-    padding-top: 50px;
+    padding-top: 70px;
     min-width: 100%;
     width: 100%;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
     overflow: scroll;
   }
   .info--contentblock p {
@@ -155,8 +186,9 @@
     font-size: 50px;
   }
   .infoToggle {
-    left: unset;
-    right: 10px;
+    top: 10px;
+  }
+  .seedBox{
     top: 10px;
   }
 }
@@ -164,8 +196,18 @@
 @media only screen and (max-width: 600px) {
   .scoreBox {
     bottom: unset;
-    top: 10px;
-    left: 10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    
+  }
+  .scoreBox p{
+    font-size: 18px;
+    text-align: center;
   }
   .map {
     right: 10px;
@@ -199,12 +241,23 @@
   .map__toggleIcon {
     display: flex;
   }
+  .seedBox{
+    left: 60px;
+    top: 40px;
+  }
+  .infoToggle{
+    left: 10px;
+    top: 40px;
+  }
+  .asideBox.infoBoxMovement{
+    top: 15px;
+  }
 }
 
 @media only screen and (max-height: 890px) {
   .info--contentblock {
     width: 100%;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
   }
 }
