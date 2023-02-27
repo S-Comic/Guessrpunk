@@ -116,7 +116,7 @@ export default function Map(props) {
             ? props.markerLocation != null
               ? "CONFIRM GUESS"
               : "MAKE A GUESS"
-            : `NEXT LOCATION - SCORE: ${mapScore}`}
+            : `NEXT LOCATION${ mapState == 1 ? `- SCORE: ${mapScore}` : ""}`}
         </p>
       </button>
     </section>
