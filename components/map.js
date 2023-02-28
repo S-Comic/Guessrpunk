@@ -1,4 +1,4 @@
-import styles from "@/styles/Home.module.css";
+import styles from "@/styles/Map.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightAndDownLeftFromCenter } from "@fortawesome/free-solid-svg-icons";
 import { useState, useCallback } from "react";
@@ -17,13 +17,14 @@ import MapContent from "./mapcontent";
 import { Teko } from "@next/font/google";
 
 const teko = Teko({ subsets: ["latin"], weight: ["400", "700"] });
+
 export default function Map(props) {
   var score;
-  const wrapperSetMarkerLocation = useCallback(
+  const wrapperSetMarkers = useCallback(
     (val) => {
-      props.setMarkerLocation(val);
+      props.setMarkers(val);
     },
-    [props.setMarkerLocation]
+    [props.setMarkers]
   );
 
 
@@ -42,23 +43,24 @@ export default function Map(props) {
   }
 
   function handleClick() {
-    if (props.markerLocation != null) {
-      if (props.answerLocation != null) {
-        props.setAnswerLocation(null);
-        props.setMarkerLocation(null);
+    if (props.markers.guess != null) {
+      if (props.markers.answer != null) {
+        props.setMarkers({guess: null, answer: null})
         props.setPanoramaImage();
       } else {
-        props.setAnswerLocation(
-          props.panoramaImage[props.panoramaImageID].location
+        props.setMarkers(
+          {
+            answer: props.panoramaImage[props.panoramaImageID].location
+          }
         );
         const squareLat = Math.pow(
           props.panoramaImage[props.panoramaImageID].location[0] -
-            props.markerLocation.lat,
+          props.markers.guess.lat,
           2
         );
         const squareLng = Math.pow(
           props.panoramaImage[props.panoramaImageID].location[1] -
-            props.markerLocation.lng,
+          props.markers.guess.lng,
           2
         );
         let totalScoreTemp = Math.round(
@@ -69,9 +71,7 @@ export default function Map(props) {
           totalScoreTemp = 0;
         }
         setMapScore(totalScoreTemp);
-        props.setTotalScore((prevScore) => {
-          return prevScore + totalScoreTemp;
-        });
+        props.setScore({totalScore: props.score.totalScore + totalScoreTemp});
       }
     }
   }
@@ -100,9 +100,8 @@ export default function Map(props) {
         style={{ height: "100%", width: "100%" }}
       >
         <MapContent
-          setMarkerLocation={wrapperSetMarkerLocation}
-          markerLocation={props.markerLocation}
-          answerLocation={props.answerLocation}
+          setMarkers={wrapperSetMarkers}
+          markers={props.markers}
           bounds={bounds}
         />
       </MapContainer>
@@ -112,8 +111,8 @@ export default function Map(props) {
         onClick={() => handleClick()}
       >
         <p>
-          {props.answerLocation == null
-            ? props.markerLocation != null
+          {props.markers.answer == null
+            ? props.markers.guess != null
               ? "CONFIRM GUESS"
               : "MAKE A GUESS"
             : `NEXT LOCATION${ mapState == 1 ? `- SCORE: ${mapScore}` : ""}`}

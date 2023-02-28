@@ -1,81 +1,5 @@
-/* MAP */
-.map {
-  position: absolute;
-  right: 20px;
-  aspect-ratio: 1 / 1;
-  transition: 0.5s all;
-  z-index: 5000;
-  bottom: 60px;
-}
-
-.unselectable {
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-
-.map--small {
-  height: 30%;
-  width: auto;
-}
-
-.map--small:hover {
-  height: 50%;
-  width: auto;
-}
-
-.map--large {
-  width: auto;
-  height: 50%;
-}
-
-.map__wrapper {
-  width: 100%;
-  height: 100%;
-}
-
-.map__image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.map__toggleIcon {
-  display: none;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  right: 0;
-  width: auto;
-  padding: 0 20px;
-  height: 30px;
-  color: white;
-  background-color: var(--primary-color);
-  z-index: 5000;
-  border-radius: 2px;
-  box-shadow: var(--primary-glow);
-  cursor: pointer;
-}
-
-.map__next-image-button {
-  position: absolute;
-  width: 100%;
-  z-index: 5001;
-  height: 40px;
-  bottom: -40px;
-  border: none;
-  background-color: var(--primary-color);
-  box-shadow: var(--primary-glow);
-  cursor: pointer;
-  color: white;
-}
-
 .scoreBox {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   position: absolute;
   left: 20px;
@@ -84,7 +8,9 @@
   box-shadow: var(--primary-glow);
   color: white;
   height: auto;
-  width: 30vh;
+  width: 400px;
+  flex-direction: row;
+  justify-content: space-around;
   z-index: 5000;
 }
 
@@ -170,6 +96,16 @@
   font-size: 26px;
 }
 
+@media only screen and (max-height: 890px) {
+  
+  .info--contentblock {
+    padding-left: 80px;
+    width: 100%;
+
+  }
+
+}
+
 @media only screen and (max-width: 750px) {
   .info--contentblock {
     padding-top: 70px;
@@ -193,22 +129,7 @@
   }
 }
 
-@media only screen and (max-height: 890px) {
-  
-  .info--contentblock {
-    width: 100%;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-  .scoreBox{
-    width: 400px;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  .map{
-    width: 200px;
-  }
-}
+
 
 @media only screen and (max-width: 600px) {
   .scoreBox {

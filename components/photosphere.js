@@ -1,4 +1,5 @@
-import styles from "@/styles/Home.module.css";
+// Photosphere CSS has to be imported globally
+
 import {
   useEffect,
   useState,

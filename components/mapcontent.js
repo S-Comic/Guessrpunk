@@ -25,8 +25,8 @@ export default function MapContent(props){
     });
     const map = useMapEvents({
         click: (e) => {
-            if (props.answerLocation == null){
-                props.setMarkerLocation(e.latlng)
+            if (props.markers.answer == null){
+                props.setMarkers({guess: e.latlng})
             }
             
  
@@ -40,21 +40,21 @@ export default function MapContent(props){
             }
             
           });
-        if (props.markerLocation != null){
-            marker = new L.Marker(props.markerLocation, {icon: guessIcon});
+        if (props.markers.guess != null){
+            marker = new L.Marker(props.markers.guess, {icon: guessIcon});
             map.addLayer(marker);
         }
         
-    }, [props.markerLocation])
+    }, [props.markers.guess])
 
     useEffect(() => {
-        if (props.answerLocation != null){
+        if (props.markers.answer != null){
 
-            answer = new L.Marker(props.answerLocation, {icon: answerIcon});
+            answer = new L.Marker(props.markers.answer, {icon: answerIcon});
             map.addLayer(answer);
-            map.setView(props.answerLocation, map.getZoom(), {animate: true});
+            map.setView(props.markers.answer, map.getZoom(), {animate: true});
         }
-    }, [props.answerLocation])
+    }, [props.markers.answer])
 
     return(
         <Fragment>
