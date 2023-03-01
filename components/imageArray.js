@@ -233,6 +233,90 @@ const imageArray = [
         "location" : [(mapHeight - 0.1056), 0.0784],
         "difficulty" : "easy"
     },
+    {
+        "id" : 37,
+        "url" : `${imageLocation}/37.jpg`,
+        "location" : [(mapHeight - 0.1219), 0.1037],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 38,
+        "url" : `${imageLocation}/38.jpg`,
+        "location" : [(mapHeight - 0.1201), 0.1403],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 39,
+        "url" : `${imageLocation}/39.jpg`,
+        "location" : [(mapHeight - 0.0982), 0.1052],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 40,
+        "url" : `${imageLocation}/40.jpg`,
+        "location" : [(mapHeight - 0.0849), 0.0978],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 41,
+        "url" : `${imageLocation}/41.jpg`,
+        "location" : [(mapHeight - 0.0775), 0.0618],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 42,
+        "url" : `${imageLocation}/42.jpg`,
+        "location" : [(mapHeight - 0.0467), 0.0616],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 43,
+        "url" : `${imageLocation}/43.jpg`,
+        "location" : [(mapHeight - 0.0812), 0.1030],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 44,
+        "url" : `${imageLocation}/44.jpg`,
+        "location" : [(mapHeight - 0.1190), 0.0866],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 45,
+        "url" : `${imageLocation}/45.jpg`,
+        "location" : [(mapHeight - 0.1520), 0.0758],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 46,
+        "url" : `${imageLocation}/46.jpg`,
+        "location" : [(mapHeight - 0.1742), 0.2049],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 47,
+        "url" : `${imageLocation}/47.jpg`,
+        "location" : [(mapHeight - 0.1668), 0.2010],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 48,
+        "url" : `${imageLocation}/48.jpg`,
+        "location" : [(mapHeight - 0.1786), 0.0386],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 49,
+        "url" : `${imageLocation}/49.jpg`,
+        "location" : [(mapHeight - 0.2254), 0.0536],
+        "difficulty" : "easy"
+    },
+    {
+        "id" : 50,
+        "url" : `${imageLocation}/50.jpg`,
+        "location" : [(mapHeight - 0.1982), 0.0860],
+        "difficulty" : "easy"
+    },
     
     
 ]
