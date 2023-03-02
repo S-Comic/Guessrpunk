@@ -18,45 +18,57 @@ const teko = Teko({ subsets: ["latin"], weight: ["400", "700"] });
 // Grab a new set of 5 images and add them to 'panoramaImage' state
 
 export default function Home() {
-
   const seedInput = useRef();
 
   const [roundSeed, setRoundSeed] = useState(() =>
-  Math.random().toString(36).slice(2, 7).toUpperCase()
-);
+    Math.random().toString(36).slice(2, 7).toUpperCase()
+  );
   const [panoramaImageID, setPanoramaImageID] = useState(0);
   const [panoramaImage, setPanoramaImage] = useState(() => createImageArray());
   const [isInfoDisplay, setInfoDisplay] = useState(false);
+  const [isCustomGamesDisplay, setCustomGamesDisplay] = useState(false);
   const [roundNum, setRoundNum] = useState(1);
 
-
   const [markers, setMarkers] = useState({
-    guess : null,
-    answer : null
-  })
+    guess: null,
+    answer: null,
+  });
 
   const [score, setScore] = useState({
-    totalScore : 0,
-    highScore : 0
-  })
+    totalScore: 0,
+    highScore: 0,
+  });
 
-
+  function handleContentChange(state) {
+    if (state == "info") {
+      setCustomGamesDisplay(false);
+      setInfoDisplay((prev) => !prev);
+    } else {
+      setInfoDisplay(false);
+      setCustomGamesDisplay((prev) => !prev);
+    }
+  }
 
   // Get highscore cookie on page load
   useEffect(
-    () => setScore((prev) => {
-      return{...prev, highScore: hasCookie("highscore") ? getCookie("highscore") : 0}
-    }),
+    () =>
+      setScore((prev) => {
+        return {
+          ...prev,
+          highScore: hasCookie("highscore") ? getCookie("highscore") : 0,
+        };
+      }),
     []
   );
-
 
   // The below runs whenever the panorama image is updated.
   const wrapperSetPanoramaImage = useCallback(() => {
     // Iterate on the round number unless it's 5, in which case reset round number
     setRoundNum((prevNum) => {
       if (prevNum == 5) {
-        setScore((prev) => {return{...prev, totalScore: 0}});
+        setScore((prev) => {
+          return { ...prev, totalScore: 0 };
+        });
         return 1;
       } else {
         return prevNum + 1;
@@ -79,9 +91,13 @@ export default function Home() {
 
   // When seed is changed, get new image array
   useEffect(() => {
-    seedInput.current.value = roundSeed
+    seedInput.current.value = roundSeed;
     setPanoramaImage(createImageArray());
   }, [roundSeed]);
+
+  const wrapperSetRoundSeed = useCallback(() => {
+    console.log("runs");
+  }, [setRoundSeed]);
 
   function createImageArray() {
     var shuffled = shuffleseed.shuffle(imageArray, roundSeed);
@@ -91,12 +107,14 @@ export default function Home() {
     if (seedInput.current.value == "") {
       seedInput.current.placeholder = "ENTER SEED";
     } else {
-      setMarkers({guessLocation : null, answerLocation : null})
+      setMarkers({ guessLocation: null, answerLocation: null });
       setRoundSeed(seedInput.current.value);
       setPanoramaImage(() => createImageArray());
-      setScore((prev) => { 
-        return {...prev, totalScore: 0}
+      setScore((prev) => {
+        return { ...prev, totalScore: 0 };
       });
+      setInfoDisplay(false);
+      setCustomGamesDisplay(false);
       setRoundNum(1);
       setPanoramaImageID(0);
     }
@@ -104,8 +122,8 @@ export default function Home() {
 
   const wrapperSetMarkers = useCallback(
     (val) => {
-      setMarkers((prev) => { 
-        return {...prev, ...val}
+      setMarkers((prev) => {
+        return { ...prev, ...val };
       });
     },
     [setMarkers]
@@ -113,8 +131,8 @@ export default function Home() {
 
   const wrapperSetScore = useCallback(
     (val) => {
-      setScore((prev) => { 
-        return {...prev, ...val}
+      setScore((prev) => {
+        return { ...prev, ...val };
       });
     },
     [setScore]
@@ -125,9 +143,9 @@ export default function Home() {
     setScore((prev) => {
       if (score.totalScore > score.highScore) {
         setCookie("highscore", score.totalScore);
-        return {...prev, highScore: score.totalScore};
+        return { ...prev, highScore: score.totalScore };
       } else {
-        return {...prev, highScore: score.highScore};
+        return { ...prev, highScore: score.highScore };
       }
     });
   }, [score.totalScore]);
@@ -142,34 +160,72 @@ export default function Home() {
         <meta name="og:image" content="/panoramas/16.jpg"></meta>
       </Head>
       <main className={`${styles.main} ${teko.className}`}>
+        <div className={styles.topBar}>
+          <ul className={styles["topBar__text-left"]}>
+            <div
+              className={`${styles.asideBox} ${styles.infoToggle} ${
+                isInfoDisplay ? styles.infoBoxMovement : ""
+              }`}
+              onClick={() => handleContentChange("info")}
+            >
+              <p>{isInfoDisplay ? "X" : "?"}</p>
+            </div>
+
+            <div
+              className={`${styles.asideBox} ${styles.customGameToggle} ${
+                isInfoDisplay ? styles.infoBoxMovement : ""
+              }`}
+              onClick={() => handleContentChange()}
+            >
+              <p>{isCustomGamesDisplay ? "CLOSE" : "CUSTOM GAMES"}</p>
+            </div>
+          </ul>
+          <ul
+            className={`${styles["topBar__text-right"]} ${
+              isCustomGamesDisplay || isInfoDisplay ? "displayNone" : ""
+            }`}
+          >
+            <li className={styles["topBar__item"]}>
+              <p className={styles["topBar__item--small"]}>ROUND</p>
+              <p className={styles["topBar__item--large"]}>{roundNum}/5</p>
+            </li>
+            <li className={styles["topBar__item"]}>
+              <p className={styles["topBar__item--small"]}>SCORE</p>
+              <p className={styles["topBar__item--large"]}>
+                {score.totalScore}
+              </p>
+            </li>
+            <li className={styles["topBar__item"]}>
+              <p className={styles["topBar__item--small"]}>HIGH SCORE</p>
+              <p className={styles["topBar__item--large"]}>{score.highScore}</p>
+            </li>
+          </ul>
+        </div>
+
         {isInfoDisplay ? <InfoOverlay /> : ""}
-
-        <div className={styles.scoreBox}>
-          <p>ROUND: {roundNum}/5</p>
-          <p>ROUND SCORE: {score.totalScore}</p>
-          <p>HIGH SCORE: {score.highScore}</p>
-        </div>
-
         <div
-          className={`${styles.asideBox} ${styles.infoToggle} ${
-            isInfoDisplay ? styles.infoBoxMovement : ""
-          }`}
-          onClick={() => setInfoDisplay((prev) => !prev)}
-        >
-          <p>{isInfoDisplay ? "X" : "?"}</p>
-        </div>
-
-        <div
-          className={`${styles.asideBox} ${styles.seedBox} ${
-            isInfoDisplay ? styles.infoBoxMovement : ""
+          className={`${styles["info--container"]} ${
+            isCustomGamesDisplay ? "" : "displayNone"
           }`}
         >
-          <input
-            ref={seedInput}
-            type="text"
-            className={teko.className}
-          ></input>
-          <a onClick={() => updateSeed()}>{"	➤ "}</a>
+          {/* Usually this would go in it's own component, but it can't because of the ref on the input box/s */}
+          <div className={styles["info--contentblock"]}>
+            <h2>{`CREATE CUSTOM GAME`}</h2>
+            <p>{`Create a game more suited to your tastes, or one to share with friends! This section is a work in progress with more to come.`}</p>
+
+            <div className={styles.inputContainer}>
+              <label for="seedInput">{`Round Seed`}</label>
+              <input
+                ref={seedInput}
+                id="seedInput"
+                type="text"
+                className={teko.className}
+              ></input>
+            </div>
+            <a href="#" onClick={() => updateSeed()} className={styles.button}>
+              START GAME
+            </a>
+          </div>
         </div>
 
         {/* Needs cleaning. When I get time I'll merge similar states into one state object */}
