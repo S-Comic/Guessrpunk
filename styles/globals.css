@@ -1,10 +1,37 @@
 :root {
   --primary-color: #ca524b;
-  --primary-color-transparent: #a3413ca8;
+  --primary-color-dark: #883632;
+  --primary-color-transparent: #883632de;
+  --primary-color-transparent-light: #a3413ca8;
   --background-color: #060b10;
 
   --primary-glow: 0px 0px 10px -1px var(--primary-color);
 }
+
+
+  ::-webkit-scrollbar {
+      -webkit-appearance: none;
+  }
+  
+  ::-webkit-scrollbar:vertical {
+      width: 12px;
+  }
+  
+  ::-webkit-scrollbar:horizontal {
+      height: 12px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, .2);
+      border-radius: 10px;
+      border: 2px solid var(--primary-color);
+  }
+  
+  ::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: var(--primary-color-dark);
+  }
+
 
 * {
   box-sizing: border-box;

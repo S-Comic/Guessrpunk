@@ -150,6 +150,7 @@
 .info--contentblock {
   position: absolute;
   padding-top: 80px;
+  padding-bottom: 50px;
   padding-left: 80px;
   color: white;
   height: 100%;
@@ -164,10 +165,16 @@
   flex-direction: column;
   gap: 20px;
   min-width: 750px;
+  overflow: auto;
 }
+
 
 .info--contentblock p {
   font-size: 26px;
+}
+
+.info--contentblock .info--link{
+  text-decoration: underline;
 }
 
 /* RESPONSIVE */
@@ -189,8 +196,9 @@
     width: 100%;
     padding-right: 10px;
     padding-left: 10px;
-    overflow: scroll;
+    overflow: auto;
   }
+  
   .info--contentblock p {
     font-size: 1.5rem;
   }
