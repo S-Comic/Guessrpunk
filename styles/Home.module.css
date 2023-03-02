@@ -7,7 +7,7 @@
   top: 0;
 
   color: white;
-  height: 65px;
+  height: 80px;
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
@@ -54,14 +54,14 @@
 
 .topBar__text-right .topBar__item--small{
   color: #eeeeee;
-  margin-bottom: -5px;
-  font-size: 15px;
+  margin-bottom: -8px;
+  font-size: 16px;
 }
 
 .topBar__text-right .topBar__item--large{
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
-  margin-bottom: -5px;
+  margin-bottom: -8px;
  
 }
 
@@ -215,7 +215,7 @@
   }
 
   .topBar__text-right{
-    gap: 20px;
+    gap: 5px;
     width: 20%;
     flex-direction: column;
     align-self: flex-end;
@@ -276,3 +276,18 @@
 }
 
 
+@media only screen and (max-height: 400px) {
+  
+  .topBar{
+    height: 50px;
+  }
+
+  .topBar__text-right{
+    flex-direction: row;
+    width: 50%;
+  }
+  .topBar__text-right .topBar__item--large{
+    font-size: 25px;
+  }
+
+}
