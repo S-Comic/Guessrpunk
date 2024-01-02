@@ -216,7 +216,7 @@ export default function Home() {
             <p>{`Create a game more suited to your tastes, or one to share with friends! This section is a work in progress with more to come.`}</p>
 
             <div className={styles.inputContainer}>
-              <label for="seedInput">{`Round Seed`}</label>
+              <label htmlFor="seedInput">{`Round Seed`}</label>
               <input
                 ref={seedInput}
                 id="seedInput"

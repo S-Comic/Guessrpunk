@@ -4,11 +4,6 @@ import { faUpRightAndDownLeftFromCenter } from "@fortawesome/free-solid-svg-icon
 import { useState, useCallback } from "react";
 import {
   MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  ImageOverlay,
-  LatLngBounds,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
@@ -27,10 +22,9 @@ export default function Map(props) {
     [props.setMarkers]
   );
 
-
   const bounds = [
-    [0, 0],
-    [0.2891, 0.2232],
+    [-85, -180],
+    [85, 180],
   ];
 
   const [mapState, setMapState] = useState(0);
@@ -81,6 +75,8 @@ export default function Map(props) {
       className={`${styles.map} ${
         styles[mapState == 0 ? "map--small" : "map--large"]
       } ${styles.unselectable}`}
+      onMouseEnter={() => setMapState(true)}
+      onMouseLeave={() => setMapState(false)}
     >
       <div
         className={styles.map__toggleIcon}
@@ -90,19 +86,20 @@ export default function Map(props) {
       </div>
 
       <MapContainer
-        minZoom={11}
+        minZoom={1}
         zoomAnimation={true}
         zoomAnimationThreshold={20}
-        maxZoom={17}
-        center={[0.12, 0.1]}
-        zoom={11}
+        maxZoom={6}
+        center={[0, 0]}
+        zoom={1}
         scrollWheelZoom={true}
         style={{ height: "100%", width: "100%" }}
-      >
+      >            
         <MapContent
           setMarkers={wrapperSetMarkers}
           markers={props.markers}
           bounds={bounds}
+          mapState={mapState}
         />
       </MapContainer>
 
