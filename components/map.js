@@ -57,11 +57,6 @@ export default function Map(props) {
           props.panoramaImage[props.panoramaImageID].location.x -
           props.markers.guess.x
         );
-        console.debug(`Lat: ${distanceLat}`, `Lng: ${distanceLng}`)
-        console.debug(Math.pow((distanceLat + distanceLng) * 9000, 1.0001), Math.round(
-          (Math.pow((distanceLat + distanceLng), 1.0001)),
-          1
-        ))
         let totalScoreTemp = Math.round(
           112 - (Math.pow((distanceLat + distanceLng), 1.0001) / 4),
           1
