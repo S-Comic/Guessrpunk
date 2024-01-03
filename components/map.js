@@ -4,6 +4,7 @@ import { faUpRightAndDownLeftFromCenter } from "@fortawesome/free-solid-svg-icon
 import { useState, useCallback } from "react";
 import {
   MapContainer,
+  useMapEvents
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
@@ -14,6 +15,7 @@ import { Teko } from "@next/font/google";
 const teko = Teko({ subsets: ["latin"], weight: ["400", "700"] });
 
 export default function Map(props) {
+  
   var score;
   const wrapperSetMarkers = useCallback(
     (val) => {
@@ -47,22 +49,28 @@ export default function Map(props) {
             answer: props.panoramaImage[props.panoramaImageID].location
           }
         );
-        const squareLat = Math.pow(
-          props.panoramaImage[props.panoramaImageID].location[0] -
-          props.markers.guess.lat,
-          2
+        const distanceLat = Math.abs(
+          props.panoramaImage[props.panoramaImageID].location.y -
+          props.markers.guess.y
         );
-        const squareLng = Math.pow(
-          props.panoramaImage[props.panoramaImageID].location[1] -
-          props.markers.guess.lng,
-          2
+        const distanceLng = Math.abs(
+          props.panoramaImage[props.panoramaImageID].location.x -
+          props.markers.guess.x
         );
+        console.debug(`Lat: ${distanceLat}`, `Lng: ${distanceLng}`)
+        console.debug(Math.pow((distanceLat + distanceLng) * 9000, 1.0001), Math.round(
+          (Math.pow((distanceLat + distanceLng), 1.0001)),
+          1
+        ))
         let totalScoreTemp = Math.round(
-          (10 - Math.pow((squareLat + squareLng) * 9000, 1.0001)) * 10,
+          112 - (Math.pow((distanceLat + distanceLng), 1.0001) / 4),
           1
         );
         if (totalScoreTemp < 0) {
           totalScoreTemp = 0;
+        }
+        else if (totalScoreTemp > 100) {
+          totalScoreTemp = 100
         }
         setMapScore(totalScoreTemp);
         props.setScore({totalScore: props.score.totalScore + totalScoreTemp});
@@ -89,7 +97,7 @@ export default function Map(props) {
         minZoom={1}
         zoomAnimation={true}
         zoomAnimationThreshold={20}
-        maxZoom={6}
+        maxZoom={7}
         center={[0, 0]}
         zoom={1}
         scrollWheelZoom={true}
