@@ -4,9 +4,6 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
 import "leaflet-defaulticon-compatibility";
-
-
-
 import styles from '@/styles/Home.module.css'
 
 export default function MapContent(props){
@@ -26,22 +23,18 @@ export default function MapContent(props){
     const map = useMapEvents({
         click: (e) => {
             if (props.markers.answer == null){
-                props.setMarkers({guess: e.latlng})
+                props.setMarkers({guess:  map.project(e.latlng, 6)})
             }
-            
- 
         },
-
       })
       useEffect(() => {
         map.eachLayer((layer) => {
-            if (layer._url != '/satellite.webp'){
+            if (!(layer instanceof L.TileLayer)){
                 layer.remove();
             }
-            
           });
         if (props.markers.guess != null){
-            marker = new L.Marker(props.markers.guess, {icon: guessIcon});
+            marker = new L.Marker(map.unproject(props.markers.guess, 6), {icon: guessIcon});
             map.addLayer(marker);
         }
         
@@ -49,16 +42,30 @@ export default function MapContent(props){
 
     useEffect(() => {
         if (props.markers.answer != null){
-
-            answer = new L.Marker(props.markers.answer, {icon: answerIcon});
+            const answerLocation = {
+                x: props.markers.answer.x, 
+                y: props.markers.answer.y
+            }
+            answer = new L.Marker(map.unproject(answerLocation, 6), {icon: answerIcon});
             map.addLayer(answer);
-            map.setView(props.markers.answer, map.getZoom(), {animate: true});
+            map.setView(map.unproject(answerLocation, 6), map.getZoom(), {animate: true});
         }
     }, [props.markers.answer])
 
+      useEffect(() => {
+        setTimeout(() => { 
+            map.invalidateSize({pan: false}); 
+          }, 1000); 
+    }, [props.mapState])
+
     return(
         <Fragment>
-        <ImageOverlay bounds={props.bounds} url="/satellite.webp"></ImageOverlay>
+            <TileLayer
+            url="satellite-tiles/{z}/{x}/{y}.png"
+            noWrap
+            maxNativeZoom={6}
+            bounds={props.bounds}
+            />
         </Fragment>
     )
 }
